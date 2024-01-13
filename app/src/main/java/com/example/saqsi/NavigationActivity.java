@@ -9,30 +9,31 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity {
     Button nextButton;
     ImageView imageView;
     TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_navigation);
 
-       // textView = findViewById(R.id.welcomeTextView);
+        nextButton = findViewById(R.id.navigate);
+        imageView = findViewById(R.id.imageView);
+        textView = findViewById(R.id.welcomeTextView);
 
-        //imageView.setImageResource(R.drawable.sa9sini_without_background);
-        nextButton= findViewById(R.id.navigate);
-       nextButton.setOnClickListener(new View.OnClickListener(){
+        imageView.setImageResource(R.drawable.sa9sini_without_background);
+        nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 //TODO we'll need to verify first using splashscreen wrapper for the login or not
-                navigateToLogin();
+               // navigateToLogin();
             }
         });
 
     }
     private void navigateToLogin(){
-        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }
