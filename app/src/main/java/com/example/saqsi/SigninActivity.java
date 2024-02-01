@@ -3,6 +3,7 @@ package com.example.saqsi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -28,8 +29,14 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                     Toast.makeText(SigninActivity.this, "Signin done successfully", Toast.LENGTH_SHORT).show();
+                    navigateToChat();
             }
         });
 
+    }
+    private void navigateToChat(){
+        Intent i = new Intent(SigninActivity.this, ChatActivity.class);
+        startActivity(i);
+        finish();
     }
 }
