@@ -17,14 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText username;
-    EditText password;
+    EditText username, password;
     Button loginButton;
+    DatabaseHelper DBhelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         TextView signin= findViewById(R.id.signupText);
+
         SpannableString spannableString = new SpannableString("Not registered yet? Sign up here");
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
@@ -43,17 +44,23 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
-
+        DBhelper = new DatabaseHelper(this);
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                if(username.getText().toString().equals("username") && password.getText().toString().equals("password")){
-                    Toast.makeText(LoginActivity.this, "login done successfully", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(LoginActivity.this, "login failed !", Toast.LENGTH_SHORT).show();
-                }
+              boolean isLog= DBhelper.checkAccount(username.getText().toString(), password.getText().toString());
+              if(isLog){
+                  navigateToChat();
+              }else{
+                  Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+              }
             }
         });
 
+    }
+    private void navigateToChat(){
+        Intent i = new Intent(LoginActivity.this, ChatActivity.class);
+        startActivity(i);
+        finish();
     }
 }

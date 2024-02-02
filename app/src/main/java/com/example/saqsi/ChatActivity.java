@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 public class ChatActivity extends AppCompatActivity {
-
+    //note we have to add some lines on android manifest si android = 11
     private TextToSpeech textToSpeech;
     private EditText chatEditText;
     private Button textToSpeechButton;
